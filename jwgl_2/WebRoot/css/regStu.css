@@ -1,0 +1,66 @@
+li {
+	list-style: none;
+}
+.firstBox {
+	background-color: #0088CC;
+}
+.firstli {
+	widows: 94px;
+	height: 94px;
+	background: #28b779;
+	
+}
+
+.pageBox2 {
+	height: 150px;
+	width: 800px;
+	
+	margin: 50px 120px auto;
+}
+
+.student-save {
+	padding: 50px 50px auto;
+	display: block;
+}
+
+
+
+.student-save table tbody tr {
+	height: 50px;
+}
+.student-save table tbody tr td { 
+	text-align: center;width: 80px;
+	} 
+	
+.student-save table tbody tr td label {
+	width: 100px;
+}
+.student-save table tbody tr td input {
+	cursor: 5px;
+	border-radius: 10px;
+}
+.student-save table tbody tr td .divbutton {
+	display: block;
+}
+
+.btn-su {
+	float: inherit;
+	
+}
+
+.btn-re {
+	float: right;
+}
+
+.btn-new-al {
+	margin: 15px auto;
+}
+
+/*学生单独注册成功显示的label颜色为*/
+.label-su {
+	
+}
+
+.Box-center {
+	margin: 10px 150px auto;
+}

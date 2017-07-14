@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+
+
+	<!-- 配置 Struts 可以受理的请求的扩展名 -->
+	<constant name="struts.action.extension" value="action,do,"></constant>
+
+	<!-- 打开允许动态方法调用的开关, 默认是 false <constant name="struts.enable.DynamicMethodInvocation" 
+		value="true"></constant> -->
+	<!-- 开发模式下使用,这样可以打印出更详细的错误信息 -->
+	<constant name="struts.devMode" value="true" />
+	<!-- 设置浏览器是否缓存静态内容,默认值为true(生产环境下使用),开发阶段最好关闭 -->
+	<constant name="struts.serve.static.browserCache" value="false" />
+
+	<!-- 拦截器包 -->
+	<package name="lanjie" extends="struts-default" namespace="/">
+		<!--此处加入拦截器 防止未登录的用户尝试登录页面 -->
+		<interceptors>
+			<interceptor name="authority" class="jwgl.util.CheckLoginInterceptor" />
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="authority" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myStack"></default-interceptor-ref>
+		<!-- 全局的跳转结果 和下面的action中是对应的 -->
+		<global-results>
+			<result name="relogin">/WEB-INF/login.jsp</result>
+		</global-results>
+
+		<!--此处是跳转的映射 -->
+		<action name="new">
+			<result>/WEB-INF/login.jsp</result>
+		</action>
+		<action name="course-*" class="jwgl.action.CourseAction" method="{1}">
+			<result name="success" type="redirectAction"> course-getCourse</result>
+			<result name="ok" type="dispatcher">/WEB-INF/html/course.jsp</result>
+			<result name="querysuccess" type="dispatcher">/WEB-INF/html/course.jsp</result>
+		</action>
+		<action name="courseArrange">
+			<result>/WEB-INF/html/courseArrange.jsp</result>
+		</action>
+		<action name="courseSelect">
+			<result>/WEB-INF/html/courseSelect.jsp</result>
+		</action>
+		<action name="demo">
+			<result>/WEB-INF/html/demo.jsp</result>
+		</action>
+		<action name="grade_check">
+			<result>/WEB-INF/html/grade_check.jsp</result>
+		</action>
+		<action name="grade_in">
+			<result>/WEB-INF/html/grade_in.jsp</result>
+		</action>
+		<action name="grade_print">
+			<result>/WEB-INF/html/grade_print.jsp</result>
+		</action>
+		<action name="grade_rebuild">
+			<result>/WEB-INF/html/grade_rebuild.jsp</result>
+		</action>
+		<action name="grade">
+			<result>/WEB-INF/html/grade.jsp</result>
+		</action>
+		<action name="graduate">
+			<result>/WEB-INF/html/graduate.jsp</result>
+		</action>
+		<action name="new_stu">
+			<result>/WEB-INF/html/new_stu.jsp</result>
+		</action>
+		<action name="old_stu">
+			<result>/WEB-INF/html/old_stu.jsp</result>
+		</action>
+		<action name="reg_stu">
+			<result>/WEB-INF/html/reg_stu.jsp</result>
+		</action>
+		<action name="setting">
+			<result>/WEB-INF/html/setting.jsp</result>
+		</action>
+		<!-- teacher -->
+		<action name="index">
+			<result>/WEB-INF/teacher/index.jsp</result>
+		</action>
+		<action name="profile" class="jwgl.action.teacher.TeacherProfile" method="all">
+			<result name="success">/WEB-INF/teacher/profile.jsp</result>
+		</action>
+		<action name="student-tea-*" class="jwgl.action.teacher.TeaStuAction" method="{1}">
+			<result name="success" type="redirectAction"> student-tea-getStudent</result>
+			<result name="querysuccess" type="dispatcher">/WEB-INF/teacher/student.jsp</result>
+		</action>
+		<action name="CoursePlan" class="jwgl.action.teacher.TeaCouAction" method="all">
+			<result name="success">/WEB-INF/teacher/CoursePlan.jsp</result>
+		</action>
+		<action name="grade-tea">
+			<result>/WEB-INF/teacher/grade.jsp</result>
+		</action>
+		<action name="grade_in-tea-*" class="jwgl.action.teacher.GradeAtion" method="{1}">
+			<result name="ok" type="dispatcher">/WEB-INF/teacher/grade_in-tea.jsp</result>
+			<result name="success">/WEB-INF/teacher/grade_in-tea.jsp</result>
+		</action>
+		<action name="grade_rebuild-tea">
+			<result>/WEB-INF/teacher/grade_rebuild.jsp</result>
+		</action>
+		<action name="grade_print-tea">
+			<result>/WEB-INF/teacher/grade_print.jsp</result>
+		</action>
+		<!-- 学生的action -->
+		<action name="student-*" class="jwgl.action.StudentAction"
+			method="{1}">
+			<result name="success" type="redirectAction">student-getStudent</result>
+			<result name="ok" type="dispatcher">/WEB-INF/html/student.jsp</result>
+			<result name="querysuccess" type="dispatcher">/WEB-INF/html/student.jsp
+			</result>
+		</action>
+		<action name="profile-stu" class="jwgl.action.student.StudentProfile" method="all">
+			<result name="success">/WEB-INF/student/profile.jsp</result>
+		</action>
+		<action name="stu-index">
+			<result>/WEB-INF/student/student.jsp</result>
+		</action>
+		<action name="timetable" class="jwgl.action.student.StuCouTableAction" method="all">
+			<result name="success">/WEB-INF/student/timetable.jsp</result>
+		</action>
+		<action name="CourseSelect-stu-*" class="jwgl.action.student.StuCouSelectAction" method="{1}">
+			<result name="success">/WEB-INF/student/CourseSelect.jsp</result>
+			<result name="ok">/WEB-INF/student/cou.jsp</result>
+		</action>
+		<action name="grade-stu-*" class="jwgl.action.student.StuGradeAction" method="{1}">
+			<result name="querysuccess">/WEB-INF/student/grade.jsp</result>
+		</action>
+		<action name="setting-stu">
+			<result>/WEB-INF/student/setting.html</result>
+		</action>
+		<!-- 教师的Action -->
+		<action name="teacher-*" class="jwgl.action.TeacherAction" method="{1}">
+			<result name="success" type="redirectAction"> teacher-getTeacher</result>
+			<result name="ok" type="dispatcher">/WEB-INF/html/teacher.jsp</result>
+			<result name="querysuccess" type="dispatcher">/WEB-INF/html/teacher.jsp</result>
+		</action>
+		<action name="teachTask-*" class= "jwgl.action.TeachTaskAction" method="{1}">
+			<result name="success"  type="redirectAction">teachTask-getTeachTask</result>
+			<result name="ok"   type="dispatcher">/WEB-INF/html/teachTask.jsp</result>
+			<result name="querysuccess" type="dispatcher">/WEB-INF/html/teachTask.jsp</result>
+		</action>
+		<action name="cst-*" class="jwgl.action.CourseSelectAction" method="{1}">
+			<result name="success"  type="redirectAction">cst-getCsAll</result>
+			<result name="ok" type="dispatcher">/WEB-INF/html/course_all.jsp</result>
+			<result name="querysuccess" type="dispatcher">/WEB-INF/html/course_all.jsp</result>
+		</action>
+		<action name="course_in">
+			<result>/WEB-INF/html/course_in.jsp</result>
+		</action>
+		
+		<action name="course_check">
+			<result>/WEB-INF/html/course_check.jsp</result>
+		</action>
+		<action name="saveAndModify">
+			<result>/WEB-INF/html/saveAndModify.jsp</result>
+		</action>
+		<action name="teaSaveAndModify">
+			<result>/WEB-INF/html/teaSaveAndModify.jsp</result>
+		</action>
+		<action name="couSaveAndModify">
+			<result> /WEB-INF/html/couSaveAndModify.jsp</result>
+		</action>
+		<action name="tsSaveAndModify">
+			<result>/WEB-INF/html/tsSaveAndModify.jsp</result>
+		</action>
+		<action name="cstSaveAndModify">
+			<result>/WEB-INF/html/cstSaveAndModify.jsp</result>
+		</action>
+	</package>
+	<package name="LoginAction" extends="struts-default" namespace="/">
+
+		<!-- 此处登录验证 -->
+		<action name="login" class="jwgl.action.LoginAction" method="admin">
+			<result name="admin">/WEB-INF/html/demo.jsp</result>
+			<result name="teacher">/WEB-INF/teacher/index.jsp</result>
+			<result name="student">/WEB-INF/student/student.jsp</result>
+			<result name="error">/WEB-INF/html/error.jsp</result>
+		</action>
+		<!-- 此处获取session并退出系统 -->
+		<action name="logout" class="jwgl.action.LogoutAction" method="execute">
+			<result>/WEB-INF/login.jsp</result>
+		</action>
+		
+		
+
+
+	</package>
+
+	<constant name="struts.i18n.encoding" value="utf-8"></constant>
+
+
+
+
+</struts>

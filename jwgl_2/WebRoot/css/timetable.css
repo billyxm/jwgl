@@ -1,0 +1,3 @@
+.tableTime { text-align: center;}
+.tableTime thead th {background-color: #E3EAF4;border-color: #999999;border-width: 1px;border-style: Solid; text-align:center;}
+.tableTime tbody tr td  {width: 179px;height: 99px}

@@ -1,0 +1,18 @@
+.con1 {
+	background-color: #A34335;
+}
+
+.content-table {
+	border: 1px solid;
+	border-color: gray;
+}
+
+.jqGridTable {
+	height: 700px;
+	width:1100px;
+	overflow: hidden;
+	
+}
+
+
+ 

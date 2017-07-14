@@ -1,0 +1,35 @@
+.pageBox1 {
+	height: 300px;
+	width: 600px;
+	border-color: #00BE67;
+	
+	
+}
+
+.pageBox1-s {
+	display: block;
+	float:left;
+	
+	margin:20px 15px 20px 15px;
+}
+
+.Box1-btn {
+	height: 100px;
+	width: 120px;
+	border-radius: 10px;
+}
+.Boxfa {
+	height: 100px;
+	width: 100px;
+}
+.Box {
+	height: 500px;
+	width: 1200px;
+	
+	display: block;
+	}
+.Box2 {
+	float:left;
+	position: relative;
+}
+}
